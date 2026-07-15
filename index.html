@@ -11,6 +11,10 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Great+Vibes&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
 
+<!-- Cloudflare Turnstile (captcha) — natively verified by Web3Forms.
+     To switch providers: hCaptcha or Google reCAPTCHA are also supported (see notes near the widget below). -->
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
 <style>
 /* ============================================================
    PALETTE
@@ -432,6 +436,10 @@ fieldset{border:none}
 
 /* honeypot */
 .hp{position:absolute;left:-9999px;top:-9999px;height:0;width:0;overflow:hidden}
+
+/* captcha widget */
+.captcha-field{display:flex;justify-content:center;margin-bottom:1.4rem;min-height:66px}
+.cf-turnstile{margin:0 auto}
 
 .submit-btn{
   width:100%;padding:1.05rem;margin-top:.6rem;
@@ -892,6 +900,28 @@ fieldset{border:none}
         <input class="input" type="text" id="contact" name="Kontakt" placeholder="e-mail nebo telefonní číslo">
       </div>
 
+      <!-- ===================== CAPTCHA =====================
+           Cloudflare Turnstile. Web3Forms verifies the token server-side once you
+           enable Turnstile in your Web3Forms dashboard and paste your Turnstile
+           SECRET key there. The value below is the SITE key (public — safe to expose).
+
+           >>> Replace data-sitekey with your own site key from the Cloudflare
+               dashboard (https://dash.cloudflare.com → Turnstile → Add site).
+               The key below is Cloudflare's official TEST key, which always passes,
+               so the form is usable before you set up your own.
+
+           To use hCaptcha instead: remove the turnstile <script> in <head>, add
+             <script src="https://web3forms.com/client/script.js" async defer></script>
+           and replace the div below with: <div class="h-captcha" data-captcha="true"></div>
+           (then enable hCaptcha in the Web3Forms dashboard).
+      -->
+      <div class="captcha-field">
+        <div class="cf-turnstile"
+             data-sitekey="1x00000000000000000000AA"
+             data-theme="dark"
+             data-language="cs"></div>
+      </div>
+
       <button type="submit" class="submit-btn" id="submitBtn">Odeslat potvrzení</button>
 
       <div class="form-msg" id="formMsg" role="status" aria-live="polite"></div>
@@ -1010,6 +1040,11 @@ fieldset{border:none}
     msg.innerHTML = html;
   }
 
+  // Turnstile tokens are single-use — reset the widget after each attempt.
+  function resetCaptcha(){
+    try { if(window.turnstile) window.turnstile.reset(); } catch(e){}
+  }
+
   form.addEventListener("submit", function(e){
     e.preventDefault();
 
@@ -1018,6 +1053,14 @@ fieldset{border:none}
       showMsg("error", "Vyplňte prosím povinná pole (jméno a účast).");
       var firstInvalid = form.querySelector(":invalid");
       if(firstInvalid) firstInvalid.focus();
+      return;
+    }
+
+    // captcha: require a Turnstile token before sending
+    var tokenField = form.querySelector('[name="cf-turnstile-response"]');
+    var token = tokenField ? tokenField.value : "";
+    if(!token){
+      showMsg("error", "Potvrďte prosím, že nejste robot (ověření níže).");
       return;
     }
 
@@ -1047,6 +1090,7 @@ fieldset{border:none}
           "Něco se nepovedlo. Zkuste to prosím znovu, nebo nás kontaktujte přímo.");
         btn.disabled = false;
         btn.textContent = originalText;
+        resetCaptcha();
       }
     })
     .catch(function(){
@@ -1054,6 +1098,7 @@ fieldset{border:none}
         "Odeslání se nezdařilo — zkontrolujte připojení a zkuste to prosím znovu.");
       btn.disabled = false;
       btn.textContent = originalText;
+      resetCaptcha();
     });
   });
 

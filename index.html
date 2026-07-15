@@ -1,0 +1,1063 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Naše svatba — Zámecká stáj Plandry</title>
+<meta name="description" content="Svatební web — Zámecká stáj Plandry, 3 km od Jihlavy. Harmonogram dne, ubytování, dress code a potvrzení účasti.">
+
+<!-- Google Fonts: Cormorant Garamond (serif), Great Vibes (script), Montserrat (sans) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Great+Vibes&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   PALETTE
+   black       #2E3830
+   forest      #3A4A3F
+   sage        #7C8B6E
+   eucalyptus  #A9B79E
+   brown wood  #B08D57
+   ============================================================ */
+:root{
+  --black:#2E3830;
+  --forest:#3A4A3F;
+  --sage:#7C8B6E;
+  --eucalyptus:#A9B79E;
+  --wood:#B08D57;
+  --cream:#F6F3EC;
+  --cream-2:#EFEAE0;
+  --white:#FCFAF5;
+
+  --font-serif:'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --font-script:'Great Vibes', cursive;
+  --font-sans:'Montserrat', 'Segoe UI', system-ui, sans-serif;
+
+  --maxw:1080px;
+  --gap:clamp(3.5rem, 8vw, 7rem);
+  --radius:4px;
+  --shadow:0 18px 45px -22px rgba(46,56,48,.45);
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--font-sans);
+  font-weight:300;
+  color:var(--black);
+  background:var(--cream);
+  line-height:1.75;
+  letter-spacing:.02em;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+
+h1,h2,h3,.script{font-family:var(--font-serif);font-weight:500;line-height:1.2}
+.script{font-family:var(--font-script);font-weight:400}
+
+.container{width:100%;max-width:var(--maxw);margin:0 auto;padding:0 clamp(1.25rem,5vw,2.5rem)}
+
+section{padding:var(--gap) 0;position:relative}
+
+/* ---------- Section titles ---------- */
+.section-head{text-align:center;margin-bottom:clamp(2.5rem,6vw,4rem)}
+.section-head .eyebrow{
+  display:block;
+  font-family:var(--font-sans);
+  font-size:.72rem;
+  letter-spacing:.4em;
+  text-transform:uppercase;
+  color:var(--wood);
+  margin-bottom:1rem;
+}
+.section-head h2{
+  font-size:clamp(2.1rem,5.5vw,3.2rem);
+  color:var(--forest);
+  font-weight:500;
+}
+.leaf-divider{
+  display:flex;align-items:center;justify-content:center;gap:.9rem;
+  margin:1.4rem auto 0;color:var(--sage);
+}
+.leaf-divider::before,.leaf-divider::after{
+  content:"";height:1px;width:min(70px,15vw);
+  background:linear-gradient(90deg,transparent,var(--eucalyptus));
+}
+.leaf-divider::after{background:linear-gradient(90deg,var(--eucalyptus),transparent)}
+.leaf-divider svg{width:26px;height:26px}
+
+/* ============================================================
+   NAV
+   ============================================================ */
+.nav{
+  position:sticky;top:0;z-index:100;
+  background:rgba(246,243,236,.82);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+  border-bottom:1px solid rgba(124,139,110,.22);
+  transition:box-shadow .3s ease;
+}
+.nav.scrolled{box-shadow:0 6px 24px -18px rgba(46,56,48,.6)}
+.nav-inner{
+  max-width:var(--maxw);margin:0 auto;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:.85rem clamp(1.25rem,5vw,2.5rem);
+}
+.nav-brand{font-family:var(--font-script);font-size:1.6rem;color:var(--forest);white-space:nowrap}
+.nav-links{display:flex;gap:1.8rem;list-style:none}
+.nav-links a{
+  font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--black);position:relative;padding:.2rem 0;transition:color .25s;
+}
+.nav-links a::after{
+  content:"";position:absolute;left:0;bottom:-2px;height:1px;width:0;
+  background:var(--wood);transition:width .3s ease;
+}
+.nav-links a:hover{color:var(--wood)}
+.nav-links a:hover::after{width:100%}
+
+.nav-toggle{
+  display:none;background:none;border:none;cursor:pointer;
+  width:34px;height:34px;position:relative;
+}
+.nav-toggle span{
+  display:block;height:2px;width:24px;background:var(--forest);
+  position:absolute;left:5px;transition:transform .3s,opacity .3s;
+}
+.nav-toggle span:nth-child(1){top:10px}
+.nav-toggle span:nth-child(2){top:16px}
+.nav-toggle span:nth-child(3){top:22px}
+.nav-toggle.open span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+.nav-toggle.open span:nth-child(2){opacity:0}
+.nav-toggle.open span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+
+@media(max-width:820px){
+  .nav-toggle{display:block}
+  .nav-links{
+    position:absolute;top:100%;left:0;right:0;
+    flex-direction:column;gap:0;
+    background:var(--cream);
+    border-bottom:1px solid rgba(124,139,110,.22);
+    max-height:0;overflow:hidden;transition:max-height .35s ease;
+  }
+  .nav-links.open{max-height:420px}
+  .nav-links li{width:100%;text-align:center}
+  .nav-links a{display:block;padding:1rem;border-top:1px solid rgba(124,139,110,.14)}
+}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero{
+  min-height:100svh;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;position:relative;overflow:hidden;
+  padding:5rem 1.25rem 4rem;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(169,183,158,.30), transparent 60%),
+    linear-gradient(180deg, var(--cream) 0%, var(--cream-2) 100%);
+}
+.hero-eyebrow{
+  font-size:.75rem;letter-spacing:.42em;text-transform:uppercase;
+  color:var(--wood);margin-bottom:1.5rem;
+}
+.hero-names{
+  font-family:var(--font-script);
+  font-size:clamp(3.6rem,13vw,7.5rem);
+  color:var(--forest);line-height:1;margin:.2rem 0;
+}
+.hero-amp{display:block;font-size:.5em;color:var(--sage);margin:.1em 0}
+.hero-date{
+  font-family:var(--font-serif);
+  font-size:clamp(1.3rem,4vw,1.9rem);
+  letter-spacing:.16em;text-transform:uppercase;
+  color:var(--black);margin-top:1.4rem;
+}
+.hero-venue{
+  margin-top:.7rem;font-size:.95rem;color:var(--sage);
+  letter-spacing:.05em;
+}
+.hero-photo{
+  margin:2.6rem auto 0;
+  width:min(320px,72vw);height:min(320px,72vw);
+  border-radius:50%;
+  object-fit:cover;
+  border:1px solid var(--eucalyptus);
+  box-shadow:var(--shadow);
+  background:
+    repeating-linear-gradient(45deg,var(--cream-2),var(--cream-2) 12px,var(--cream) 12px,var(--cream) 24px);
+}
+.hero-photo-placeholder{
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--font-serif);font-style:italic;color:var(--sage);
+  font-size:1rem;text-align:center;padding:1rem;
+}
+
+/* countdown */
+.countdown{
+  display:flex;gap:clamp(.7rem,3vw,1.8rem);justify-content:center;
+  margin-top:2.6rem;flex-wrap:wrap;
+}
+.countdown .unit{
+  min-width:66px;
+  background:rgba(252,250,245,.7);
+  border:1px solid rgba(124,139,110,.3);
+  border-radius:var(--radius);
+  padding:.9rem .6rem;
+}
+.countdown .num{
+  font-family:var(--font-serif);font-size:clamp(1.7rem,5vw,2.4rem);
+  color:var(--forest);font-weight:600;line-height:1;
+}
+.countdown .lbl{
+  font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--wood);margin-top:.45rem;
+}
+.scroll-cue{
+  margin-top:2.8rem;color:var(--sage);font-size:.7rem;
+  letter-spacing:.25em;text-transform:uppercase;
+  display:flex;flex-direction:column;align-items:center;gap:.6rem;
+}
+.scroll-cue svg{width:18px;height:18px;animation:bob 2s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
+
+/* ============================================================
+   TIMELINE (Harmonogram)
+   ============================================================ */
+.timeline{position:relative;max-width:720px;margin:0 auto;padding-left:1rem}
+.timeline::before{
+  content:"";position:absolute;left:calc(1rem + 6px);top:8px;bottom:8px;
+  width:2px;background:linear-gradient(var(--eucalyptus),var(--sage));
+}
+.tl-item{position:relative;padding:0 0 2.6rem 3rem}
+.tl-item:last-child{padding-bottom:0}
+.tl-item::before{
+  content:"";position:absolute;left:1rem;top:4px;
+  width:14px;height:14px;border-radius:50%;
+  background:var(--cream);border:2px solid var(--wood);
+  box-shadow:0 0 0 4px rgba(176,141,87,.15);
+}
+.tl-time{
+  font-family:var(--font-serif);font-size:1.4rem;font-weight:600;
+  color:var(--wood);line-height:1;
+}
+.tl-title{
+  font-family:var(--font-serif);font-size:1.35rem;color:var(--forest);
+  margin-top:.15rem;
+}
+.tl-desc{font-size:.9rem;color:var(--sage);margin-top:.25rem}
+
+/* ============================================================
+   MAP
+   ============================================================ */
+.alt{background:linear-gradient(180deg,var(--cream-2),var(--cream))}
+.map-wrap{
+  max-width:900px;margin:0 auto;
+  border-radius:var(--radius);overflow:hidden;
+  border:1px solid rgba(124,139,110,.3);box-shadow:var(--shadow);
+}
+.map-wrap iframe{display:block;width:100%;height:min(440px,60vw);border:0;filter:grayscale(.18) saturate(.9)}
+.map-note{
+  text-align:center;margin-top:1.6rem;font-size:.95rem;color:var(--black);
+  display:flex;align-items:center;justify-content:center;gap:.6rem;flex-wrap:wrap;
+}
+.map-note svg{width:20px;height:20px;color:var(--wood);flex-shrink:0}
+
+/* ============================================================
+   CARDS (Ubytování)
+   ============================================================ */
+.card-grid{
+  display:grid;gap:1.4rem;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  max-width:900px;margin:0 auto;
+}
+.card{
+  background:var(--white);border:1px solid rgba(124,139,110,.25);
+  border-radius:var(--radius);padding:1.7rem 1.6rem;
+  transition:transform .3s ease,box-shadow .3s ease;
+}
+.card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.card h3{font-size:1.3rem;color:var(--forest);margin-bottom:.35rem}
+.card .meta{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--wood);margin-bottom:.7rem}
+.card p{font-size:.9rem;color:var(--sage)}
+.card.highlight{
+  background:linear-gradient(160deg,var(--forest),var(--black));
+  color:var(--cream);border-color:transparent;
+}
+.card.highlight h3{color:var(--white)}
+.card.highlight .meta{color:var(--eucalyptus)}
+.card.highlight p{color:var(--eucalyptus)}
+
+/* ============================================================
+   DRESS CODE
+   ============================================================ */
+.dress-text{
+  max-width:640px;margin:0 auto 2.8rem;text-align:center;
+  font-family:var(--font-serif);font-size:clamp(1.15rem,3vw,1.45rem);
+  color:var(--black);font-style:italic;
+}
+.swatches{
+  display:flex;flex-wrap:wrap;gap:clamp(1rem,4vw,2rem);
+  justify-content:center;
+}
+.swatch{text-align:center}
+.swatch .chip{
+  width:clamp(70px,18vw,110px);height:clamp(70px,18vw,110px);
+  border-radius:50%;box-shadow:var(--shadow);
+  border:3px solid var(--white);margin:0 auto;
+}
+.swatch .name{
+  margin-top:.85rem;font-size:.78rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--black);
+}
+.swatch .hex{font-size:.68rem;color:var(--sage);margin-top:.15rem;letter-spacing:.08em}
+
+/* ============================================================
+   GOOD TO KNOW
+   ============================================================ */
+.info-grid{
+  display:grid;gap:1.4rem;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  max-width:900px;margin:0 auto;
+}
+.info-item{
+  display:flex;gap:1.1rem;align-items:flex-start;
+  background:var(--white);border:1px solid rgba(124,139,110,.25);
+  border-radius:var(--radius);padding:1.6rem;
+}
+.info-item .ico{
+  flex-shrink:0;width:44px;height:44px;border-radius:50%;
+  background:rgba(169,183,158,.28);
+  display:flex;align-items:center;justify-content:center;color:var(--forest);
+}
+.info-item .ico svg{width:22px;height:22px}
+.info-item h3{font-size:1.15rem;color:var(--forest);margin-bottom:.3rem}
+.info-item p{font-size:.88rem;color:var(--sage)}
+
+/* ============================================================
+   GIFTS
+   ============================================================ */
+.gifts-inner{max-width:680px;margin:0 auto;text-align:center}
+.gifts-lead{
+  font-family:var(--font-serif);font-style:italic;
+  font-size:clamp(1.2rem,3.2vw,1.6rem);color:var(--black);
+  line-height:1.5;margin-bottom:2.4rem;
+}
+.gift-card{
+  background:var(--white);border:1px solid rgba(124,139,110,.28);
+  border-radius:var(--radius);padding:clamp(1.8rem,5vw,2.6rem);
+  box-shadow:var(--shadow);
+  display:flex;gap:clamp(1.5rem,5vw,2.5rem);align-items:center;
+  justify-content:center;flex-wrap:wrap;text-align:left;
+}
+.gift-details .label{
+  font-size:.68rem;letter-spacing:.24em;text-transform:uppercase;
+  color:var(--wood);margin-bottom:.3rem;
+}
+.gift-details .account{
+  font-family:var(--font-serif);font-size:clamp(1.3rem,4vw,1.8rem);
+  color:var(--forest);font-weight:600;letter-spacing:.03em;
+}
+.gift-details .sub{font-size:.85rem;color:var(--sage);margin-top:.4rem}
+.qr{
+  width:150px;height:150px;flex-shrink:0;
+  border:1px solid var(--eucalyptus);border-radius:var(--radius);
+  background:var(--cream-2);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--font-serif);font-style:italic;color:var(--sage);
+  font-size:.8rem;text-align:center;padding:.8rem;
+}
+.qr img{width:100%;height:100%;object-fit:contain}
+
+/* ============================================================
+   RSVP FORM
+   ============================================================ */
+.rsvp{background:linear-gradient(180deg,var(--forest),var(--black));color:var(--cream)}
+.rsvp .section-head .eyebrow{color:var(--eucalyptus)}
+.rsvp .section-head h2{color:var(--white)}
+.rsvp .leaf-divider{color:var(--eucalyptus)}
+.rsvp .leaf-divider::before{background:linear-gradient(90deg,transparent,var(--sage))}
+.rsvp .leaf-divider::after{background:linear-gradient(90deg,var(--sage),transparent)}
+.rsvp-intro{text-align:center;max-width:560px;margin:0 auto 2.6rem;color:var(--eucalyptus);font-size:.98rem}
+
+.form{max-width:600px;margin:0 auto}
+.field{margin-bottom:1.6rem}
+.field > label,.field .legend{
+  display:block;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--eucalyptus);margin-bottom:.6rem;
+}
+.field .req{color:var(--wood)}
+.input{
+  width:100%;padding:.85rem 1rem;
+  background:rgba(252,250,245,.06);
+  border:1px solid rgba(169,183,158,.4);
+  border-radius:var(--radius);
+  color:var(--cream);font-family:var(--font-sans);font-size:.95rem;font-weight:300;
+  transition:border-color .25s,background .25s;
+}
+.input::placeholder{color:rgba(169,183,158,.6)}
+.input:focus{outline:none;border-color:var(--eucalyptus);background:rgba(252,250,245,.1)}
+
+fieldset{border:none}
+.radio-row{display:flex;gap:.8rem;flex-wrap:wrap}
+.pill{position:relative;flex:1;min-width:120px}
+.pill input{position:absolute;opacity:0;pointer-events:none}
+.pill label{
+  display:block;text-align:center;cursor:pointer;
+  padding:.75rem 1rem;font-size:.9rem;
+  border:1px solid rgba(169,183,158,.4);border-radius:var(--radius);
+  color:var(--cream);transition:all .25s;
+}
+.pill input:checked + label{
+  background:var(--eucalyptus);color:var(--black);
+  border-color:var(--eucalyptus);font-weight:500;
+}
+.pill input:focus-visible + label{outline:2px solid var(--wood);outline-offset:2px}
+
+.check-row{display:flex;gap:1.6rem;flex-wrap:wrap}
+.check{display:flex;align-items:center;gap:.6rem;cursor:pointer;font-size:.95rem}
+.check input{
+  width:20px;height:20px;accent-color:var(--sage);cursor:pointer;flex-shrink:0;
+}
+
+.conditional{
+  max-height:0;overflow:hidden;opacity:0;
+  transition:max-height .4s ease,opacity .4s ease,margin .4s ease;
+  margin-bottom:0;
+}
+.conditional.show{max-height:320px;opacity:1;margin-bottom:1.6rem}
+
+/* honeypot */
+.hp{position:absolute;left:-9999px;top:-9999px;height:0;width:0;overflow:hidden}
+
+.submit-btn{
+  width:100%;padding:1.05rem;margin-top:.6rem;
+  background:var(--wood);color:var(--white);
+  border:none;border-radius:var(--radius);cursor:pointer;
+  font-family:var(--font-sans);font-size:.82rem;letter-spacing:.24em;text-transform:uppercase;
+  transition:background .3s,transform .15s;
+}
+.submit-btn:hover{background:#c79a5f}
+.submit-btn:active{transform:scale(.99)}
+.submit-btn:disabled{opacity:.6;cursor:not-allowed}
+
+.form-msg{
+  text-align:center;margin-top:1.6rem;padding:1.2rem;
+  border-radius:var(--radius);font-size:.95rem;display:none;
+}
+.form-msg.show{display:block}
+.form-msg.success{background:rgba(169,183,158,.2);border:1px solid var(--eucalyptus);color:var(--cream)}
+.form-msg.error{background:rgba(176,141,87,.15);border:1px solid var(--wood);color:var(--cream)}
+.form-msg .big{font-family:var(--font-serif);font-size:1.5rem;color:var(--white);display:block;margin-bottom:.3rem}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.footer{
+  text-align:center;padding:3.5rem 1.25rem;
+  background:var(--black);color:var(--eucalyptus);
+}
+.footer .names{font-family:var(--font-script);font-size:2.4rem;color:var(--cream);margin-bottom:.6rem}
+.footer .date{font-size:.8rem;letter-spacing:.2em;text-transform:uppercase}
+.footer .leaf{color:var(--sage);margin:1.2rem 0}
+.footer .leaf svg{width:28px;height:28px;display:inline-block}
+
+/* ============================================================
+   REVEAL ANIMATION
+   ============================================================ */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s ease}
+.reveal.visible{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){
+  .reveal{opacity:1;transform:none;transition:none}
+  html{scroll-behavior:auto}
+  .scroll-cue svg{animation:none}
+}
+
+/* decorative side leaves */
+.corner-leaf{position:absolute;pointer-events:none;color:var(--eucalyptus);opacity:.35;z-index:0}
+.corner-leaf svg{width:clamp(90px,22vw,180px);height:auto}
+.corner-leaf.tl{top:-10px;left:-30px;transform:rotate(-15deg)}
+.corner-leaf.br{bottom:-10px;right:-30px;transform:rotate(160deg)}
+.container{position:relative;z-index:1}
+</style>
+</head>
+<body>
+
+<!-- ==================== NAV ==================== -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="#hero" class="nav-brand">J &amp; N</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#harmonogram">Harmonogram</a></li>
+      <li><a href="#kde">Kde nás najdete</a></li>
+      <li><a href="#ubytovani">Ubytování</a></li>
+      <li><a href="#dresscode">Dress code</a></li>
+      <li><a href="#info">Dobré vědět</a></li>
+      <li><a href="#dary">Dary</a></li>
+      <li><a href="#rsvp">Potvrzení účasti</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ==================== HERO ==================== -->
+<header class="hero" id="hero">
+  <p class="hero-eyebrow">Bereme se</p>
+  <h1 class="hero-names">
+    Jméno&nbsp;ženicha
+    <span class="hero-amp">&amp;</span>
+    Jméno&nbsp;nevěsty
+  </h1>
+  <p class="hero-date" id="heroDate">DD. MĚSÍCE RRRR</p>
+  <p class="hero-venue">Zámecká stáj Plandry &middot; 3 km od Jihlavy, Vysočina</p>
+
+  <!-- placeholder photo -->
+  <img class="hero-photo hero-photo-placeholder" id="heroPhoto"
+       src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='320'%20height='320'%3E%3Crect%20width='100%25'%20height='100%25'%20fill='%23EFEAE0'/%3E%3Ctext%20x='50%25'%20y='48%25'%20font-family='Georgia,serif'%20font-style='italic'%20font-size='20'%20fill='%237C8B6E'%20text-anchor='middle'%3ENaše%20fotografie%3C/text%3E%3Ctext%20x='50%25'%20y='58%25'%20font-family='Georgia,serif'%20font-size='13'%20fill='%23A9B79E'%20text-anchor='middle'%3E(placeholder)%3C/text%3E%3C/svg%3E"
+       alt="Naše fotografie — placeholder">
+
+  <!-- countdown -->
+  <div class="countdown" id="countdown" aria-label="Odpočet do svatby">
+    <div class="unit"><div class="num" id="cd-days">--</div><div class="lbl">dní</div></div>
+    <div class="unit"><div class="num" id="cd-hours">--</div><div class="lbl">hodin</div></div>
+    <div class="unit"><div class="num" id="cd-mins">--</div><div class="lbl">minut</div></div>
+    <div class="unit"><div class="num" id="cd-secs">--</div><div class="lbl">sekund</div></div>
+  </div>
+
+  <a href="#harmonogram" class="scroll-cue" aria-label="Posunout dolů">
+    <span>Program</span>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+  </a>
+</header>
+
+<!-- ==================== HARMONOGRAM ==================== -->
+<section id="harmonogram">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Jak to bude probíhat</span>
+      <h2>Harmonogram dne</h2>
+      <div class="leaf-divider">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C7 6 4 10 4 15c0 4 3 7 8 7s8-3 8-7c0-5-3-9-8-13Zm0 3c3 3 5 6 5 10 0 3-2 5-5 5s-5-2-5-5c0-4 2-7 5-10Z"/><path d="M12 6v13" stroke="currentColor" stroke-width="1" fill="none"/></svg>
+      </div>
+    </div>
+
+    <div class="timeline">
+      <div class="tl-item reveal">
+        <div class="tl-time">11:00</div>
+        <div class="tl-title">Příjezd hostů</div>
+        <div class="tl-desc">Přivítání a drobné občerstvení v areálu.</div>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-time">12:00</div>
+        <div class="tl-title">Obřad</div>
+        <div class="tl-desc">Slavnostní obřad v zahradě zámecké stáje.</div>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-time">12:30</div>
+        <div class="tl-title">Gratulace &amp; přípitek</div>
+        <div class="tl-desc">Společný přípitek a gratulace novomanželům.</div>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-time">13:30</div>
+        <div class="tl-title">Slavnostní oběd</div>
+        <div class="tl-desc">Společné posezení u dobrého jídla.</div>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-time">15:00</div>
+        <div class="tl-title">Focení &amp; volná zábava</div>
+        <div class="tl-desc">Focení novomanželů i hostů, káva a sweet bar.</div>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-time">17:00</div>
+        <div class="tl-title">Krájení dortu</div>
+        <div class="tl-desc">Slavnostní krájení svatebního dortu.</div>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-time">19:00</div>
+        <div class="tl-title">Večerní raut</div>
+        <div class="tl-desc">Večerní občerstvení a grilování.</div>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-time">20:00</div>
+        <div class="tl-title">Večerní zábava</div>
+        <div class="tl-desc">Hudba, tanec a oslava až do ranních hodin.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== KDE NÁS NAJDETE ==================== -->
+<section id="kde" class="alt">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Místo konání</span>
+      <h2>Kde nás najdete</h2>
+      <div class="leaf-divider">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C7 6 4 10 4 15c0 4 3 7 8 7s8-3 8-7c0-5-3-9-8-13Zm0 3c3 3 5 6 5 10 0 3-2 5-5 5s-5-2-5-5c0-4 2-7 5-10Z"/></svg>
+      </div>
+    </div>
+
+    <div class="map-wrap reveal">
+      <iframe
+        src="https://www.google.com/maps?q=Z%C3%A1meck%C3%A1%20st%C3%A1j%20Plandry%201%20Jihlava&output=embed"
+        title="Mapa — Zámecká stáj, Plandry 1, u Jihlavy"
+        loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+    </div>
+
+    <p class="map-note reveal">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="6" width="15" height="11" rx="2"/><path d="M16 8h4l3 3v6h-7z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+      Parkování je k dispozici přímo v areálu.
+    </p>
+  </div>
+</section>
+
+<!-- ==================== UBYTOVÁNÍ ==================== -->
+<section id="ubytovani">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Kde přespat</span>
+      <h2>Ubytování</h2>
+      <div class="leaf-divider">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C7 6 4 10 4 15c0 4 3 7 8 7s8-3 8-7c0-5-3-9-8-13Zm0 3c3 3 5 6 5 10 0 3-2 5-5 5s-5-2-5-5c0-4 2-7 5-10Z"/></svg>
+      </div>
+    </div>
+
+    <div class="card-grid">
+      <div class="card highlight reveal">
+        <div class="meta">Přímo na místě</div>
+        <h3>Zámecká stáj Plandry</h3>
+        <p>Je možnost přespat přímo v místě konání — v areálu. Kapacita je omezená, v případě zájmu nám prosím dejte vědět v RSVP formuláři.</p>
+      </div>
+      <div class="card reveal">
+        <div class="meta">Jihlava &middot; ~3 km</div>
+        <h3>Penzion (placeholder)</h3>
+        <p>Doplníme název a kontakt. Příjemné ubytování v dosahu místa konání.</p>
+      </div>
+      <div class="card reveal">
+        <div class="meta">Jihlava &middot; ~4 km</div>
+        <h3>Hotel (placeholder)</h3>
+        <p>Doplníme název a kontakt. Komfortní hotel v centru Jihlavy.</p>
+      </div>
+      <div class="card reveal">
+        <div class="meta">Jihlava &middot; ~5 km</div>
+        <h3>Apartmány (placeholder)</h3>
+        <p>Doplníme název a kontakt. Ideální pro rodiny a menší skupinky.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== DRESS CODE ==================== -->
+<section id="dresscode" class="alt">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Co na sebe</span>
+      <h2>Dress code</h2>
+      <div class="leaf-divider">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C7 6 4 10 4 15c0 4 3 7 8 7s8-3 8-7c0-5-3-9-8-13Zm0 3c3 3 5 6 5 10 0 3-2 5-5 5s-5-2-5-5c0-4 2-7 5-10Z"/></svg>
+      </div>
+    </div>
+
+    <p class="dress-text reveal">
+      Hosté v obleku nebo v šatech, laděné do tónů
+      <strong>sage&nbsp;/ forest&nbsp;/ eucalyptus</strong>.
+      Budeme rádi, když společně vytvoříme přírodní barevnou paletu.
+    </p>
+
+    <div class="swatches reveal">
+      <div class="swatch">
+        <div class="chip" style="background:#2E3830"></div>
+        <div class="name">Black</div><div class="hex">#2E3830</div>
+      </div>
+      <div class="swatch">
+        <div class="chip" style="background:#3A4A3F"></div>
+        <div class="name">Forest</div><div class="hex">#3A4A3F</div>
+      </div>
+      <div class="swatch">
+        <div class="chip" style="background:#7C8B6E"></div>
+        <div class="name">Sage</div><div class="hex">#7C8B6E</div>
+      </div>
+      <div class="swatch">
+        <div class="chip" style="background:#A9B79E"></div>
+        <div class="name">Eucalyptus</div><div class="hex">#A9B79E</div>
+      </div>
+      <div class="swatch">
+        <div class="chip" style="background:#B08D57"></div>
+        <div class="name">Wood</div><div class="hex">#B08D57</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== DOBRÉ VĚDĚT ==================== -->
+<section id="info">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Pár poznámek</span>
+      <h2>Dobré vědět</h2>
+      <div class="leaf-divider">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C7 6 4 10 4 15c0 4 3 7 8 7s8-3 8-7c0-5-3-9-8-13Zm0 3c3 3 5 6 5 10 0 3-2 5-5 5s-5-2-5-5c0-4 2-7 5-10Z"/></svg>
+      </div>
+    </div>
+
+    <div class="info-grid">
+      <div class="info-item reveal">
+        <div class="ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/><path d="M2 2l20 20" stroke-width="1.8"/></svg>
+        </div>
+        <div>
+          <h3>Unplugged obřad</h3>
+          <p>Během obřadu prosíme bez mobilů a fotoaparátů — užijme si tento okamžik naplno. Fotograf vše zachytí za nás.</p>
+        </div>
+      </div>
+
+      <div class="info-item reveal">
+        <div class="ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 15a4 4 0 0 0 4 4h9a4 4 0 0 0 .8-7.9A6 6 0 0 0 5 9"/><path d="M12 2v2M4 5l1 1M20 5l-1 1"/></svg>
+        </div>
+        <div>
+          <h3>Počasí</h3>
+          <p>V případě nepříznivého počasí se svatba přesune dovnitř — pohodlí a dobrá nálada zůstávají stejné.</p>
+        </div>
+      </div>
+
+      <div class="info-item reveal">
+        <div class="ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2h8M8 2v4l4 5 4-5V2M12 11v9M8 22h8"/></svg>
+        </div>
+        <div>
+          <h3>Tvrdý alkohol vítán</h3>
+          <p>Základní bar zajistíme, ale vlastní zásoby oblíbeného tvrdého alkoholu jsou vítány — vezměte s sebou.</p>
+        </div>
+      </div>
+
+      <div class="info-item reveal">
+        <div class="ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21v-9a7 7 0 0 1 14 0v9"/><path d="M3 21h18M12 5V3"/><path d="M9 12a3 3 0 0 1 6 0"/></svg>
+        </div>
+        <div>
+          <h3>Sweet bar</h3>
+          <p>Domácí sladkosti a dobroty jsou vítány. Pokud rádi pečete, přineste svůj kousek do sweet baru.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== DARY ==================== -->
+<section id="dary" class="alt">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Vaše přízeň nás těší</span>
+      <h2>Dary</h2>
+      <div class="leaf-divider">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C7 6 4 10 4 15c0 4 3 7 8 7s8-3 8-7c0-5-3-9-8-13Zm0 3c3 3 5 6 5 10 0 3-2 5-5 5s-5-2-5-5c0-4 2-7 5-10Z"/></svg>
+      </div>
+    </div>
+
+    <div class="gifts-inner">
+      <p class="gifts-lead reveal">
+        Největším darem je pro nás vaše přítomnost.
+        Nechceme dary — pokud nás však chcete potěšit,
+        budeme vděční za příspěvek na naši svatební cestu.
+      </p>
+
+      <div class="gift-card reveal">
+        <div class="gift-details">
+          <div class="label">Číslo účtu</div>
+          <div class="account">000000000/0000</div>
+          <div class="sub">(placeholder — doplníme číslo účtu)</div>
+        </div>
+        <div class="qr" aria-label="QR platba">
+          <!-- placeholder QR — nahradíme vygenerovaným QR kódem pro platbu -->
+          <span>QR platba<br>(placeholder)</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== RSVP ==================== -->
+<section id="rsvp" class="rsvp">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Dejte nám vědět</span>
+      <h2>Potvrzení účasti</h2>
+      <div class="leaf-divider">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C7 6 4 10 4 15c0 4 3 7 8 7s8-3 8-7c0-5-3-9-8-13Zm0 3c3 3 5 6 5 10 0 3-2 5-5 5s-5-2-5-5c0-4 2-7 5-10Z"/></svg>
+      </div>
+    </div>
+
+    <p class="rsvp-intro reveal">
+      Prosíme o potvrzení účasti do <strong>DD. MĚSÍCE RRRR</strong>.
+      Vyplnění zabere jen chvilku — děkujeme!
+    </p>
+
+    <form class="form reveal" id="rsvpForm" novalidate>
+      <!-- Web3Forms hidden fields -->
+      <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY">
+      <input type="hidden" name="subject" value="Nové potvrzení účasti — svatba">
+      <input type="hidden" name="from_name" value="Svatební web">
+
+      <!-- honeypot -->
+      <div class="hp" aria-hidden="true">
+        <label>Nevyplňujte toto pole
+          <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off">
+        </label>
+      </div>
+
+      <!-- Jméno -->
+      <div class="field">
+        <label for="name">Jméno a příjmení <span class="req">*</span></label>
+        <input class="input" type="text" id="name" name="Jméno a příjmení" placeholder="Např. Jan Novák" required>
+      </div>
+
+      <!-- Účast ano/ne -->
+      <div class="field">
+        <fieldset>
+          <span class="legend">Zúčastním se <span class="req">*</span></span>
+          <div class="radio-row">
+            <div class="pill">
+              <input type="radio" id="att-yes" name="Zúčastním se" value="Ano" required>
+              <label for="att-yes">Ano, přijdu &#10084;</label>
+            </div>
+            <div class="pill">
+              <input type="radio" id="att-no" name="Zúčastním se" value="Ne">
+              <label for="att-no">Bohužel nemohu</label>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+
+      <!-- Conditional: pouze pokud ano -->
+      <div class="conditional" id="condYes">
+        <!-- Rozsah účasti -->
+        <div class="field">
+          <fieldset>
+            <span class="legend">Účast</span>
+            <div class="radio-row">
+              <div class="pill">
+                <input type="radio" id="scope-obrad" name="Rozsah účasti" value="Pouze obřad">
+                <label for="scope-obrad">Pouze obřad</label>
+              </div>
+              <div class="pill">
+                <input type="radio" id="scope-cely" name="Rozsah účasti" value="Celý den">
+                <label for="scope-cely">Celý den</label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <!-- Dieta -->
+        <div class="field">
+          <label for="diet">Dietní omezení – alergeny</label>
+          <input class="input" type="text" id="diet" name="Dietní omezení / alergeny" placeholder="Např. lepek, ořechy, laktóza…">
+        </div>
+
+        <!-- Veg -->
+        <div class="field">
+          <span class="legend">Stravování</span>
+          <div class="check-row">
+            <label class="check"><input type="checkbox" name="Vegetarián" value="Ano"> Vegetarián</label>
+            <label class="check"><input type="checkbox" name="Vegan" value="Ano"> Vegan</label>
+          </div>
+        </div>
+
+        <!-- Ubytování -->
+        <div class="field">
+          <fieldset>
+            <span class="legend">Potřebuji ubytování</span>
+            <div class="radio-row">
+              <div class="pill">
+                <input type="radio" id="acc-yes" name="Potřebuji ubytování" value="Ano">
+                <label for="acc-yes">Ano</label>
+              </div>
+              <div class="pill">
+                <input type="radio" id="acc-no" name="Potřebuji ubytování" value="Ne">
+                <label for="acc-no">Ne</label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+      </div>
+
+      <!-- Kontakt -->
+      <div class="field">
+        <label for="contact">Kontakt (e-mail nebo telefon)</label>
+        <input class="input" type="text" id="contact" name="Kontakt" placeholder="e-mail nebo telefonní číslo">
+      </div>
+
+      <button type="submit" class="submit-btn" id="submitBtn">Odeslat potvrzení</button>
+
+      <div class="form-msg" id="formMsg" role="status" aria-live="polite"></div>
+    </form>
+  </div>
+</section>
+
+<!-- ==================== FOOTER ==================== -->
+<footer class="footer">
+  <div class="names">Jméno &amp; Jméno</div>
+  <div class="leaf">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C7 6 4 10 4 15c0 4 3 7 8 7s8-3 8-7c0-5-3-9-8-13Zm0 3c3 3 5 6 5 10 0 3-2 5-5 5s-5-2-5-5c0-4 2-7 5-10Z"/></svg>
+  </div>
+  <div class="date">DD. MĚSÍCE RRRR &middot; Zámecká stáj Plandry</div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ============ WEDDING DATE (placeholder) ============
+     Změňte na skutečné datum a čas svatby, např. "2026-06-13T11:00:00" */
+  var WEDDING_DATE = new Date("2026-09-05T11:00:00");
+
+  /* ---------- Countdown ---------- */
+  var elDays  = document.getElementById("cd-days");
+  var elHours = document.getElementById("cd-hours");
+  var elMins  = document.getElementById("cd-mins");
+  var elSecs  = document.getElementById("cd-secs");
+
+  function pad(n){return (n<10?"0":"")+n;}
+
+  function tick(){
+    var diff = WEDDING_DATE.getTime() - Date.now();
+    if(diff <= 0){
+      elDays.textContent = "0"; elHours.textContent = "00";
+      elMins.textContent = "00"; elSecs.textContent = "00";
+      var cd = document.getElementById("countdown");
+      if(cd && !cd.dataset.done){
+        cd.dataset.done = "1";
+        cd.setAttribute("aria-label","Je to tady!");
+      }
+      return;
+    }
+    var s = Math.floor(diff/1000);
+    var d = Math.floor(s/86400); s -= d*86400;
+    var h = Math.floor(s/3600);  s -= h*3600;
+    var m = Math.floor(s/60);    s -= m*60;
+    elDays.textContent  = d;
+    elHours.textContent = pad(h);
+    elMins.textContent  = pad(m);
+    elSecs.textContent  = pad(s);
+  }
+  tick();
+  setInterval(tick, 1000);
+
+  /* ---------- Sticky nav shadow ---------- */
+  var nav = document.getElementById("nav");
+  function onScroll(){
+    if(window.scrollY > 20) nav.classList.add("scrolled");
+    else nav.classList.remove("scrolled");
+  }
+  window.addEventListener("scroll", onScroll, {passive:true});
+  onScroll();
+
+  /* ---------- Mobile nav toggle ---------- */
+  var toggle = document.getElementById("navToggle");
+  var links  = document.getElementById("navLinks");
+  toggle.addEventListener("click", function(){
+    var open = links.classList.toggle("open");
+    toggle.classList.toggle("open", open);
+    toggle.setAttribute("aria-expanded", open ? "true" : "false");
+  });
+  links.addEventListener("click", function(e){
+    if(e.target.tagName === "A"){
+      links.classList.remove("open");
+      toggle.classList.remove("open");
+      toggle.setAttribute("aria-expanded","false");
+    }
+  });
+
+  /* ---------- Reveal on scroll ---------- */
+  var revealEls = document.querySelectorAll(".reveal");
+  if("IntersectionObserver" in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){
+          en.target.classList.add("visible");
+          io.unobserve(en.target);
+        }
+      });
+    }, {threshold:0.12, rootMargin:"0px 0px -40px 0px"});
+    revealEls.forEach(function(el){ io.observe(el); });
+  } else {
+    revealEls.forEach(function(el){ el.classList.add("visible"); });
+  }
+
+  /* ---------- RSVP: conditional block ---------- */
+  var condYes = document.getElementById("condYes");
+  var attYes  = document.getElementById("att-yes");
+  var attNo   = document.getElementById("att-no");
+  function updateConditional(){
+    if(attYes.checked) condYes.classList.add("show");
+    else condYes.classList.remove("show");
+  }
+  attYes.addEventListener("change", updateConditional);
+  attNo.addEventListener("change", updateConditional);
+
+  /* ---------- RSVP: submit via fetch ---------- */
+  var form = document.getElementById("rsvpForm");
+  var btn  = document.getElementById("submitBtn");
+  var msg  = document.getElementById("formMsg");
+
+  function showMsg(type, html){
+    msg.className = "form-msg show " + type;
+    msg.innerHTML = html;
+  }
+
+  form.addEventListener("submit", function(e){
+    e.preventDefault();
+
+    // basic HTML5 validity
+    if(!form.checkValidity()){
+      showMsg("error", "Vyplňte prosím povinná pole (jméno a účast).");
+      var firstInvalid = form.querySelector(":invalid");
+      if(firstInvalid) firstInvalid.focus();
+      return;
+    }
+
+    btn.disabled = true;
+    var originalText = btn.textContent;
+    btn.textContent = "Odesílám…";
+    msg.className = "form-msg";
+
+    var formData = new FormData(form);
+    var payload = JSON.stringify(Object.fromEntries(formData.entries()));
+
+    fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Accept": "application/json" },
+      body: payload
+    })
+    .then(function(res){ return res.json().then(function(data){ return {ok:res.ok, data:data}; }); })
+    .then(function(r){
+      if(r.ok && r.data.success){
+        form.reset();
+        condYes.classList.remove("show");
+        showMsg("success",
+          "<span class='big'>Děkujeme! &#10084;</span>Vaše potvrzení účasti bylo úspěšně odesláno. Těšíme se na vás!");
+        btn.style.display = "none";
+      } else {
+        showMsg("error",
+          "Něco se nepovedlo. Zkuste to prosím znovu, nebo nás kontaktujte přímo.");
+        btn.disabled = false;
+        btn.textContent = originalText;
+      }
+    })
+    .catch(function(){
+      showMsg("error",
+        "Odeslání se nezdařilo — zkontrolujte připojení a zkuste to prosím znovu.");
+      btn.disabled = false;
+      btn.textContent = originalText;
+    });
+  });
+
+})();
+</script>
+</body>
+</html>

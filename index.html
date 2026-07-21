@@ -279,38 +279,70 @@ section{padding:var(--gap) 0;position:relative;z-index:1}
 /* ============================================================
    DOBRÉ VĚDĚT (incl. dress code)
    ============================================================ */
-.dress{max-width:720px;margin:0 auto clamp(3rem,7vw,4.5rem);text-align:center}
+/* --- oblouk: společný tvar pro vzorník barev i ikony --- */
+:root{--arch:999px 999px 3px 3px}
+
+.dress{max-width:660px;margin:0 auto clamp(3.5rem,7vw,5rem);text-align:center}
 .dress p{
-  font-family:var(--sans);font-weight:300;font-size:clamp(1.05rem,2.8vw,1.3rem);
-  color:var(--ink);line-height:1.6;
+  font-family:var(--sans);font-weight:300;font-size:clamp(1.05rem,2.8vw,1.25rem);
+  color:var(--ink);line-height:1.65;
 }
 .dress strong{font-weight:500}
-.palette{display:flex;justify-content:center;gap:.9rem;margin-top:1.8rem;flex-wrap:wrap}
-.palette .chip{width:54px;height:70px;border-radius:40px 40px 4px 4px;border:1px solid rgba(30,42,44,.2)}
-.palette .lbl{font-size:.58rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--label);margin-top:.55rem}
 
-.info-grid{display:grid;gap:1.2rem;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));max-width:900px;margin:0 auto}
-.info-item{display:flex;gap:1rem;align-items:flex-start;background:var(--card);border:1px solid var(--rule);border-radius:4px;padding:1.6rem}
-.info-item .ico{flex-shrink:0;width:44px;height:44px;border-radius:50%;background:var(--forest);display:flex;align-items:center;justify-content:center;color:var(--cream)}
-.info-item .ico .material-symbols-outlined{font-size:22px}
-.info-item h3{font-family:var(--sans);font-weight:500;font-size:.82rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink);margin-bottom:.35rem}
-.info-item p{font-size:.85rem;color:var(--ink-2);line-height:1.55}
+/* vzorník — vzorky stojí na společné lince jako na kartě z tiskárny */
+/* stejně široké sloupce — jinak různě dlouhé názvy barev rozhodí rozestupy */
+.palette{
+  display:grid;grid-template-columns:repeat(5,minmax(0,1fr));
+  align-items:end;gap:clamp(.5rem,1.6vw,1rem);
+  max-width:680px;margin:clamp(2.2rem,5vw,3rem) auto 0;
+  padding-bottom:1.1rem;border-bottom:1px solid var(--rule);
+}
+.palette>div{text-align:center}
+.palette .chip{
+  width:min(100%,88px);height:clamp(76px,14vw,116px);margin:0 auto;
+  border-radius:var(--arch);border:1px solid rgba(30,42,44,.16);
+  box-shadow:0 14px 26px -20px rgba(30,42,44,.75);
+}
+.palette .lbl{
+  font-size:.58rem;font-weight:500;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--label);margin-top:.85rem;line-height:1.3;white-space:nowrap;
+}
 
-/* ============================================================
-   DARY
-   ============================================================ */
-.gifts-inner{max-width:640px;margin:0 auto;text-align:center}
-.gifts-lead{
-  font-family:var(--sans);font-weight:300;font-size:clamp(1.05rem,2.8vw,1.3rem);
-  color:var(--ink);line-height:1.6;
+/* poznámky — žádné boxy, jen vlásková mřížka jako v tištěném oznámení */
+.info-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  max-width:800px;margin:0 auto;
+  border-top:1px solid var(--rule);
 }
-.gifts-lead .accent{font-weight:500;color:var(--ink)}
-.gift-note{
-  margin-top:2rem;display:inline-flex;align-items:center;gap:.6rem;
-  font-size:.76rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2);
-  border:1px solid var(--rule);border-radius:40px;padding:.7rem 1.4rem;
+.info-item{
+  display:flex;gap:1.15rem;align-items:flex-start;
+  padding:clamp(1.8rem,4vw,2.4rem) 0;
+  border-bottom:1px solid var(--rule);
 }
-.gift-note .material-symbols-outlined{font-size:20px;color:var(--label)}
+.info-item:nth-child(odd){padding-right:clamp(1.6rem,4vw,2.6rem);border-right:1px solid var(--rule)}
+.info-item:nth-child(even){padding-left:clamp(1.6rem,4vw,2.6rem)}
+.info-item .ico{
+  flex-shrink:0;width:38px;height:44px;
+  border:1px solid var(--sage);border-radius:var(--arch);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--ink);background:rgba(255,255,255,.28);
+}
+.info-item .ico .material-symbols-outlined{font-size:21px}
+.info-item h3{
+  font-family:var(--sans);font-weight:500;font-size:.78rem;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--ink);
+  margin-bottom:.5rem;line-height:1.4;
+}
+.info-item p{font-size:.9rem;color:var(--ink-2);line-height:1.65}
+
+@media(max-width:640px){
+  .info-grid{grid-template-columns:1fr;max-width:420px}
+  .info-item:nth-child(odd){padding-right:0;border-right:none}
+  .info-item:nth-child(even){padding-left:0}
+  .palette{gap:.4rem;padding-bottom:.9rem}
+  /* na úzkých displejích se raději zalomí, než aby přetekl */
+  .palette .lbl{font-size:.5rem;letter-spacing:.06em;white-space:normal;margin-top:.6rem}
+}
 
 /* ============================================================
    RSVP — tmavá sekce (kotva kontrastu)
@@ -367,7 +399,9 @@ fieldset{border:none}
 .field.invalid .input{border-color:#EBB4A6}
 .field.invalid .pill label{border-color:rgba(235,180,166,.6)}
 
-.conditional{max-height:0;overflow:hidden;opacity:0;transition:max-height .45s ease,opacity .45s ease,margin .45s ease;margin-bottom:0}
+/* position:relative je nutné — jinak sbalený blok neořízne skryté
+   absolutně poziciované inputy a ty natáhnou výšku stránky */
+.conditional{position:relative;max-height:0;overflow:hidden;opacity:0;transition:max-height .45s ease,opacity .45s ease,margin .45s ease;margin-bottom:0}
 .conditional.show{max-height:3000px;opacity:1;margin-bottom:1.6rem}
 
 /* předěl pro doprovod (+1) */
@@ -461,7 +495,6 @@ fieldset{border:none}
       <li><a href="#program">Program</a></li>
       <li><a href="#kde">Kde nás najdete</a></li>
       <li><a href="#info">Dobré vědět</a></li>
-      <li><a href="#dary">Dary</a></li>
       <li><a href="#rsvp">Potvrdit účast</a></li>
     </ul>
   </div>
@@ -601,30 +634,6 @@ fieldset{border:none}
         <div class="ico"><span class="material-symbols-outlined">cake</span></div>
         <div><h3>Sweet bar</h3><p>Pečete rádi? Přineste svůj kousek do sweet baru — domácí dobroty vítáme.</p></div>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- ==================== DARY ==================== -->
-<section id="dary" class="alt">
-  <div class="container">
-    <div class="section-head reveal">
-      <span class="eyebrow">Vaše přízeň nás těší</span>
-      <h2><em>Dary</em></h2>
-      <div class="rule-mark"><i></i></div>
-    </div>
-
-    <div class="gifts-inner">
-      <p class="gifts-lead reveal">
-        Největším darem je pro nás <span class="accent">vaše přítomnost.</span>
-        Pokud nás však chcete potěšit, budeme vděční za příspěvek na naši svatební cestu.
-      </p>
-      <p class="reveal">
-        <span class="gift-note">
-          <span class="material-symbols-outlined">redeem</span>
-          Číslo účtu &amp; QR platbu doplníme
-        </span>
-      </p>
     </div>
   </div>
 </section>

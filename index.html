@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nela &amp; Milan — 1. 5. 2027, Zámecká stáj Plandry</title>
-<meta name="description" content="Svatba Nely a Milana — 1. 5. 2027, Zámecká stáj Plandry u Jihlavy. Program dne, místo, dobré vědět a potvrzení účasti.">
+<title>Nela &amp; Milan &middot; 1. 5. 2027, Zámecká stáj Plandry</title>
+<meta name="description" content="Svatba Nely a Milana, 1. 5. 2027, Zámecká stáj Plandry u Jihlavy. Program dne, místo, dobré vědět a potvrzení účasti.">
 <meta name="theme-color" content="#1E2A2C">
 
 <!-- Fonts: Parisienne (script) + Montserrat + Google Material Symbols (ikony) -->
@@ -15,20 +15,20 @@
 
 <style>
 /* ============================================================
-   PALETTE — přímo z tištěného oznámení
+   PALETTE: přímo z tištěného oznámení
    inkoust #2F3F41 · světlá šalvěj #C3C6BE · krémový papír
    ============================================================ */
 :root{
-  --ink:#1E2A2C;          /* hlavní text — tmavý, vysoký kontrast */
-  --ink-2:#38474A;        /* sekundární text — stále dobře čitelný */
-  --label:#4C5A4E;        /* popisky/eyebrows — tmavá šalvěj, čitelné */
-  --sage:#B9BEB2;         /* světlá šalvěj — jen linky/dekor, NE text */
+  --ink:#1E2A2C;          /* hlavní text, tmavý, vysoký kontrast */
+  --ink-2:#38474A;        /* sekundární text, stále dobře čitelný */
+  --label:#4C5A4E;        /* popisky a eyebrows, tmavá šalvěj, čitelné */
+  --sage:#B9BEB2;         /* světlá šalvěj, jen linky a dekor, NE text */
   --sage-mid:#4C5A4E;     /* alias pro popisky (kompat.) */
   --forest:#2C3B33;       /* tmavá sekce (RSVP) */
   --forest-deep:#212D26;
-  --paper:#E9E2D2;        /* teplý krémový papír — sytější, ne vybledlé */
-  --paper-2:#E0D7C3;      /* hlubší krém — alt sekce */
-  --card:#F6F1E5;         /* karty/pole — světlejší než papír kvůli kontrastu */
+  --paper:#E9E2D2;        /* teplý krémový papír, sytější, ne vybledlé */
+  --paper-2:#E0D7C3;      /* hlubší krém pro alt sekce */
+  --card:#F6F1E5;         /* karty a pole, světlejší než papír kvůli kontrastu */
   --cream:#F1EADB;        /* světlý text na tmavém pozadí */
 
   --script:'Parisienne', cursive;
@@ -52,13 +52,13 @@ body{
   overflow-x:hidden;
   position:relative;
 }
-/* imitace textury papíru — jemný šum přes celou stránku */
+/* imitace textury papíru: jemný šum přes celou stránku */
 body::before{
   content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   opacity:.07;mix-blend-mode:multiply;
 }
-/* měkké ztmavení okrajů — dodá hloubku, ať stránka není plochá a přesvětlená */
+/* měkké ztmavení okrajů dodá hloubku, ať stránka není plochá a přesvětlená */
 body::after{
   content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
   background:radial-gradient(130% 100% at 50% 40%, transparent 55%, rgba(30,42,44,.10) 100%);
@@ -93,7 +93,7 @@ section{padding:var(--gap) 0;position:relative;z-index:1}
   color:var(--ink);letter-spacing:.04em;line-height:1.2;
 }
 .section-head h2 em{font-style:normal;font-weight:inherit;color:inherit}
-/* jemný předěl pod nadpisem — hairline se středovým bodem */
+/* jemný předěl pod nadpisem: hairline se středovým bodem */
 .rule-mark{display:flex;align-items:center;justify-content:center;gap:.7rem;margin:1.3rem auto 0}
 .rule-mark::before,.rule-mark::after{content:"";height:1px;width:46px;background:var(--rule)}
 .rule-mark i{width:5px;height:5px;border-radius:50%;background:var(--label);display:block}
@@ -153,7 +153,7 @@ section{padding:var(--gap) 0;position:relative;z-index:1}
 }
 
 /* ============================================================
-   HERO — zrcadlí kompozici oznámení
+   HERO: zrcadlí kompozici oznámení
    ============================================================ */
 .hero{
   min-height:100svh;
@@ -163,8 +163,8 @@ section{padding:var(--gap) 0;position:relative;z-index:1}
 }
 .hero-inner{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;width:100%}
 
-/* h1 má ve výchozím stavu bold, ale Parisienne existuje jen ve váze 400
-   — prohlížeč by si tučný řez domýšlel sám (Firefox obzvlášť hrubě) */
+/* h1 má ve výchozím stavu bold, ale Parisienne existuje jen ve váze 400.
+   Prohlížeč by si tučný řez domýšlel sám, Firefox obzvlášť hrubě. */
 .names{margin:.4rem 0 0;font-weight:400}
 .names .row{display:flex;align-items:baseline;justify-content:center;gap:.45em;flex-wrap:wrap}
 .names .script{
@@ -198,7 +198,7 @@ section{padding:var(--gap) 0;position:relative;z-index:1}
   color:var(--sage-mid);opacity:0;animation:rise .9s .8s ease forwards;
 }
 
-/* odpočet — hairline, bez rámečků */
+/* odpočet: hairline, bez rámečků */
 .countdown{
   display:flex;justify-content:center;align-items:stretch;
   margin-top:2.6rem;
@@ -225,18 +225,20 @@ section{padding:var(--gap) 0;position:relative;z-index:1}
 @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
 
 /* ============================================================
-   PROGRAM DNE — botanická „vine" s kaligrafickými časy
+   PROGRAM DNE: botanická "vine" s kaligrafickými časy
    ============================================================ */
 .vine{position:relative;max-width:720px;margin:0 auto}
 .vine::before{
   content:"";position:absolute;top:6px;bottom:6px;left:50%;transform:translateX(-50%);
   width:1px;background:var(--rule);
 }
-.moment{position:relative;display:grid;grid-template-columns:1fr 40px 1fr;align-items:center;margin-bottom:2.4rem}
+.moment{position:relative;display:grid;grid-template-columns:1fr 40px 1fr;align-items:start;margin-bottom:2.4rem}
 .moment:last-child{margin-bottom:0}
 .moment .node{
-  grid-column:2;justify-self:center;width:13px;height:13px;border-radius:50%;
+  grid-column:2;grid-row:1;justify-self:center;width:13px;height:13px;border-radius:50%;
   background:var(--paper);border:1px solid var(--ink);position:relative;z-index:1;
+  /* puntík stojí na ose času, ne uprostřed celého bloku */
+  margin-top:.8rem;
 }
 .moment .node::after{content:"";position:absolute;inset:3px;border-radius:50%;background:var(--sage-mid)}
 .moment .body{padding:.2rem 0}
@@ -244,15 +246,15 @@ section{padding:var(--gap) 0;position:relative;z-index:1}
 .moment .t{font-weight:400;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);margin-top:.5rem}
 .moment .d{font-size:.86rem;color:var(--ink-2);margin-top:.25rem;line-height:1.55}
 /* levá / pravá strana */
-.moment:nth-child(odd) .body{grid-column:1;text-align:right;padding-right:1.6rem}
-.moment:nth-child(even) .body{grid-column:3;text-align:left;padding-left:1.6rem}
+.moment:nth-child(odd) .body{grid-column:1;grid-row:1;text-align:right;padding-right:1.6rem}
+.moment:nth-child(even) .body{grid-column:3;grid-row:1;text-align:left;padding-left:1.6rem}
 
 @media(max-width:640px){
   .vine::before{left:7px}
   .moment{grid-template-columns:15px 1fr;gap:0}
   .moment .node{grid-column:1;justify-self:start}
   .moment:nth-child(odd) .body,
-  .moment:nth-child(even) .body{grid-column:2;text-align:left;padding:0 0 0 1.4rem}
+  .moment:nth-child(even) .body{grid-column:2;grid-row:1;text-align:left;padding:0 0 0 1.4rem}
 }
 
 /* ============================================================
@@ -286,8 +288,8 @@ section{padding:var(--gap) 0;position:relative;z-index:1}
 }
 .dress strong{font-weight:500}
 
-/* vzorník — vzorky stojí na společné lince jako na kartě z tiskárny */
-/* stejně široké sloupce — jinak různě dlouhé názvy barev rozhodí rozestupy */
+/* vzorník: vzorky stojí na společné lince jako na kartě z tiskárny */
+/* stejně široké sloupce, jinak různě dlouhé názvy barev rozhodí rozestupy */
 .palette{
   display:grid;grid-template-columns:repeat(5,minmax(0,1fr));
   align-items:end;gap:clamp(.5rem,1.6vw,1rem);
@@ -300,13 +302,13 @@ section{padding:var(--gap) 0;position:relative;z-index:1}
   border-radius:var(--arch);border:1px solid rgba(30,42,44,.16);
   box-shadow:0 14px 26px -20px rgba(30,42,44,.75);
 }
-/* názvy jsou psané malými písmeny ve složených závorkách — přesně jako na vzorníku */
+/* názvy jsou psané malými písmeny ve složených závorkách, přesně jako na vzorníku */
 .palette .lbl{
   font-size:.62rem;font-weight:500;letter-spacing:.1em;
   color:var(--label);margin-top:.85rem;line-height:1.3;white-space:nowrap;
 }
 
-/* poznámky — žádné boxy, jen vlásková mřížka jako v tištěném oznámení */
+/* poznámky: žádné boxy, jen vlásková mřížka jako v tištěném oznámení */
 .info-grid{
   display:grid;grid-template-columns:1fr 1fr;
   max-width:800px;margin:0 auto;
@@ -332,6 +334,12 @@ section{padding:var(--gap) 0;position:relative;z-index:1}
   margin-bottom:.5rem;line-height:1.4;
 }
 .info-item p{font-size:.9rem;color:var(--ink-2);line-height:1.65}
+/* poznámka přes celou šířku, stojí uprostřed pod dvojicí nahoře */
+.info-item.full{
+  grid-column:1/-1;justify-content:center;
+  padding-left:0;padding-right:0;border-right:none;
+}
+.info-item.full>div{max-width:34rem}
 
 @media(max-width:640px){
   .info-grid{grid-template-columns:1fr;max-width:420px}
@@ -343,7 +351,7 @@ section{padding:var(--gap) 0;position:relative;z-index:1}
 }
 
 /* ============================================================
-   RSVP — tmavá sekce (kotva kontrastu)
+   RSVP: tmavá sekce, kotva kontrastu
    ============================================================ */
 .rsvp{background:linear-gradient(180deg,var(--forest),var(--forest-deep));color:var(--cream)}
 .rsvp .section-head h2{color:var(--cream)}
@@ -379,7 +387,7 @@ fieldset{border:none}
 .check{display:flex;align-items:center;gap:.6rem;cursor:pointer;font-size:.95rem;color:var(--cream)}
 .check input{width:19px;height:19px;accent-color:#A9BDA4;cursor:pointer;flex-shrink:0}
 
-/* alergeny — přepínatelné chipy */
+/* alergeny: přepínatelné chipy */
 .chip-check-row{display:flex;flex-wrap:wrap;gap:.5rem}
 .chip-check input{position:absolute;opacity:0;pointer-events:none}
 .chip-check span{
@@ -397,7 +405,7 @@ fieldset{border:none}
 .field.invalid .input{border-color:#EBB4A6}
 .field.invalid .pill label{border-color:rgba(235,180,166,.6)}
 
-/* position:relative je nutné — jinak sbalený blok neořízne skryté
+/* position:relative je nutné, jinak sbalený blok neořízne skryté
    absolutně poziciované inputy a ty natáhnou výšku stránky */
 .conditional{position:relative;max-height:0;overflow:hidden;opacity:0;transition:max-height .45s ease,opacity .45s ease,margin .45s ease;margin-bottom:0}
 .conditional.show{max-height:3000px;opacity:1;margin-bottom:1.6rem}
@@ -426,7 +434,7 @@ fieldset{border:none}
 .form-msg.error{background:rgba(241,234,219,.08);border:1px solid #A9BDA4;color:var(--cream)}
 .form-msg .big{font-family:var(--script);font-size:2rem;color:var(--cream);display:block;margin-bottom:.2rem}
 
-/* potvrzení odeslání — karta místo formuláře */
+/* potvrzení odeslání: karta místo formuláře */
 .rsvp-done{
   max-width:520px;margin:0 auto;text-align:center;
   opacity:0;transform:translateY(16px);
@@ -552,10 +560,6 @@ fieldset{border:none}
         <span class="node"></span>
       </div>
       <div class="moment reveal">
-        <div class="body"><div class="time">14:30</div><div class="t">První tanec</div><div class="d">Novomanželé otevřou parket.</div></div>
-        <span class="node"></span>
-      </div>
-      <div class="moment reveal">
         <div class="body"><div class="time">15:30</div><div class="t">Krájení dortu</div><div class="d">Sladká chvíle dne.</div></div>
         <span class="node"></span>
       </div>
@@ -583,7 +587,7 @@ fieldset{border:none}
     <div class="map-wrap reveal">
       <iframe
         src="https://www.google.com/maps?q=Z%C3%A1meck%C3%A1%20st%C3%A1j%20Plandry%201%20Jihlava&output=embed"
-        title="Mapa — Zámecká stáj, Plandry 1, u Jihlavy"
+        title="Mapa: Zámecká stáj, Plandry 1, u Jihlavy"
         loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
     </div>
 
@@ -594,7 +598,7 @@ fieldset{border:none}
       </div>
       <div class="place-note reveal">
         <span class="material-symbols-outlined">night_shelter</span>
-        <div><h3>Ubytování</h3><p>Přespat můžete přímo v areálu — kapacita je omezená, dejte nám prosím vědět v potvrzení účasti. Tipy na ubytování v okolí Jihlavy rádi doplníme.</p></div>
+        <div><h3>Ubytování</h3><p>Přespat můžete přímo v areálu. Kapacita je omezená, dejte nám prosím vědět v potvrzení účasti. Tipy na ubytování v okolí Jihlavy rádi doplníme.</p></div>
       </div>
     </div>
   </div>
@@ -610,7 +614,7 @@ fieldset{border:none}
     </div>
 
     <div class="dress reveal">
-      <p>Budeme rádi, když se s námi sladíte do <strong>přírodních tónů</strong> —
+      <p>Budeme rádi, když se s námi sladíte do <strong>přírodních tónů</strong>:
         šalvěj, eukalyptus a teplé dřevo, přesně jako naše oznámení.</p>
       <div class="palette">
         <div><div class="chip" style="background:#35393A"></div><div class="lbl">black</div></div>
@@ -624,11 +628,15 @@ fieldset{border:none}
     <div class="info-grid">
       <div class="info-item reveal">
         <div class="ico"><span class="material-symbols-outlined">no_photography</span></div>
-        <div><h3>Unplugged obřad</h3><p>Během obřadu prosíme bez mobilů a foťáků — užijme si ten okamžik naplno. Fotograf vše zachytí za nás.</p></div>
+        <div><h3>Unplugged obřad</h3><p>Během obřadu prosíme bez mobilů a foťáků. Užijme si ten okamžik naplno, fotograf vše zachytí za nás.</p></div>
       </div>
       <div class="info-item reveal">
         <div class="ico"><span class="material-symbols-outlined">rainy</span></div>
         <div><h3>Počasí</h3><p>Kdyby zlobilo, přesouváme se dovnitř. Pohoda a dobrá nálada zůstávají stejné.</p></div>
+      </div>
+      <div class="info-item full reveal">
+        <div class="ico"><span class="material-symbols-outlined">redeem</span></div>
+        <div><h3>Dary</h3><p>Rádi vás uvidíme i bez darů, vaše přítomnost je pro nás to hlavní. Pokud byste nám přesto chtěli něco věnovat, nejvíc nám pomůže finanční příspěvek na naši společnou budoucnost.</p></div>
       </div>
     </div>
   </div>
@@ -645,12 +653,12 @@ fieldset{border:none}
 
     <p class="rsvp-intro reveal">
       Prosíme o potvrzení do <strong>28. února 2027</strong>.
-      Vyplnění zabere jen chvilku — děkujeme!
+      Vyplnění zabere jen chvilku. Děkujeme!
     </p>
 
     <form class="form reveal" id="rsvpForm" novalidate>
       <input type="hidden" name="access_key" value="695b13ae-f5c8-4bdc-bb07-88913b88c4e5">
-      <input type="hidden" name="subject" value="Nové potvrzení účasti — svatba Nela & Milan">
+      <input type="hidden" name="subject" value="Nové potvrzení účasti, svatba Nela & Milan">
       <input type="hidden" name="from_name" value="Svatební web">
 
       <div class="hp" aria-hidden="true">
@@ -823,7 +831,7 @@ fieldset{border:none}
         </div>
       </div>
 
-      <!-- Ochrana proti botům je neviditelná: honeypot pole „botcheck" výše
+      <!-- Ochrana proti botům je neviditelná: honeypot pole "botcheck" výše
            (vyplní ho jen bot → Web3Forms odmítne) + časová past v JS níže
            (formulář odeslaný do 2,5 s od načtení = bot). Host nic nevidí. -->
 
@@ -835,7 +843,7 @@ fieldset{border:none}
     <div class="rsvp-done" id="rsvpDone" role="status" aria-live="polite" hidden>
       <div class="done-mark"><span class="material-symbols-outlined">check</span></div>
       <div class="done-title">Děkujeme!</div>
-      <p class="done-text">Vaše potvrzení účasti je u nás. Moc se na vás těšíme — 1.&nbsp;5.&nbsp;2027 na Plandrech.</p>
+      <p class="done-text">Vaše potvrzení účasti je u nás. Moc se na vás těšíme. 1.&nbsp;5.&nbsp;2027 na Plandrech.</p>
       <button type="button" class="done-resend" id="resendBtn">Odeslat další potvrzení</button>
     </div>
   </div>
@@ -964,7 +972,7 @@ fieldset{border:none}
   var nameField = document.getElementById("nameField");
   var attField  = document.getElementById("attField");
 
-  /* Časová past proti botům — crawler odešle formulář prakticky ihned. */
+  /* Časová past proti botům: crawler odešle formulář prakticky ihned. */
   var formReadyAt = Date.now();
   var MIN_FILL_MS = 2500;
 
@@ -1017,7 +1025,7 @@ fieldset{border:none}
     }
     return false;
   }
-  /* Sestaví data — jen viditelná, vyplněná pole; vícenásobné hodnoty (alergeny) sloučí. */
+  /* Sestaví data jen z viditelných, vyplněných polí. Vícenásobné hodnoty (alergeny) sloučí. */
   function buildPayload(){
     var data = {};
     Array.prototype.forEach.call(form.elements, function(el){
@@ -1086,7 +1094,7 @@ fieldset{border:none}
     })
     .catch(function(){
       showMsg("error",
-        "Odeslání se nezdařilo — zkontrolujte připojení a zkuste to prosím znovu.");
+        "Odeslání se nezdařilo. Zkontrolujte připojení a zkuste to prosím znovu.");
       btn.disabled = false;
       btn.textContent = originalText;
     });
